@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}">
+</head>
+<body>
+    <div class="loginBox"> <img class="user" src="{{url_for('static', filename='/user-circle.png')}}" height="100px" width="100px">
+        <h3>Sign up</h3>
+        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+        <form action="/register/success" method="post">
+            <div class="inputBox"> 
+            <input id="uname" type="text" name="first_name" placeholder="First Name">
+            <input id="uname" type="text" name="last_name" placeholder="Last Name">
+            <input id="uname" type="text" name="email" placeholder="Email">
+            <input id="pass" type="password" name="password" placeholder="Password">
+            <input id="pass" type="password" name="confirm" placeholder="Confirm Password">
+            </div> 
+            <input type="submit" name="" value="Register">
+        </form> <a href="/">Already a user?<br> </a>
+    </div>
+</body>
+</html>
+

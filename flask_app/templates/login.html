@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}">
+</head>
+<body>
+    <h1 class="banner" style="left: 44%; position: absolute; top: 15%;">Car Dealz</h1>
+    <div class="loginBox">
+        <h3>Welcome Back</h3>
+        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <p>{{messages}}</p>
+                        {% endif %}
+                    {% endwith %}
+        <form action="/login/success" method="post">
+            <div class="inputBox"> 
+            <input id="uname" type="text" name="email" placeholder="Email">
+            <input id="pass" type="password" name="password" placeholder="Password"> 
+            </div> 
+            <input type="submit" name="" value="Sign In">
+        </form> <a href="/register">Not a user?<br> </a>
+    </div>
+</body>
+</html>
+

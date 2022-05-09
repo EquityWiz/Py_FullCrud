@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Deals</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='button.css')}}">
+</head>
+<body>
+    <div class="banner flex justify-content">
+        <h1>Welcome to Car Dealz, {{logged_user.first_name}}!</h1>
+        <span></span>
+        <span></span>
+        <button class="button-34" role="button">
+            {% if session['id_user'] %}
+                <a href="/logout">logout</a>
+            {% else %}
+                <a href="/">sign in</a>  
+            {% endif %}
+            </button>
+    </div>
+    <!-- --------End of Banner------ -->
+    <div class="flex justify-content"> 
+        <div class="col" style="margin: 5px;">
+            <button class="button-34" role="button">
+                <a href="/new">Add A Car</a>
+            </button>
+            <br><br>
+            <button class="button-34" role="button">
+                <a href="/purchases">View Purchases</a>
+            </button>
+        </div>
+        <!-- End of profile and first column -->
+        <div class="feedcol">
+                <div class="card">
+                    <div id="top" class="flex justify-content">
+                        <h4>Model</h4>
+                        <h4>Year</h4>
+                        <h4>Seller</h4>
+                        <h4>Actions</h4>
+                    </div>
+                </div>
+            {% if listings %}
+                {% for listing in listings %}
+                    <div class="card">
+                        <div id="top" class="flex justify-content">
+                            <h5>{{listing.model}}</h5>
+                            <h5>{{listing.year}}</h5>
+                            <h5>{{listing.publisher.first_name}} {{listing.publisher.last_name}}</h5>
+                            <div style="width: 90px;">
+                                {% if listing.user_id == session['id_user'] %}
+                            <a href="/edit/{{listing.id}}">Edit</a>    <a href="/delete/{{listing.id}}">Delete</a>
+                            {% else %}
+                            <a href="/show/{{listing.id}}">View</a>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- End of Feed Column -->
+
+        <div class="col"></div>
+    </div>
+
+    <!-- Enf of right column and container -->
+
+</body>
+</html>

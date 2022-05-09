@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Car</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='longform.css')}}">
+</head>
+<body>
+    <div style="flex: 1;height: 150; width: 150; background-color: rgb(19, 57, 114);position: absolute;right: 2%;top: 3%; padding: 10px; border: 1px gray solid; border-radius: 5%;">
+        <h3>{{logged_user.first_name}} {{logged_user.last_name}}</h3>
+            <br>
+            <a href="/dashboard">Home</a>
+            <a href="/logout">Logout</a>
+    </div>
+    <div class="loginBox">
+        <h3 class="banner" style="left: 45%; position: absolute; top: 7%;">Add a Car</h3><br>
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: rgb(112, 48, 48);">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        <form action="/new/success" method="post">
+            <div class="inputBox" style="display: flex;"> 
+                <div style="flex: 2;">
+                    <input id="uname" type="text" name="model" placeholder="Model">
+                    <input id="uname" type="text" name="make" placeholder="Make">
+                    <textarea name="description" id="" cols="50" rows="10" style="margin: 10px;" placeholder="Description"></textarea>
+                </div>
+                <div style="flex: 1; margin: 10px; margin-top: 50px; padding: 5px;">
+                    <label for="year" style="color: white;">Year</label>
+                    <input type="number" name="year" value="1950">
+                    <label for="price" style="color: white;">Price</label>
+                    <input type="number" name="price" value="2500">
+                </div>
+            </div> 
+            <input type="submit" name="" value="Add">
+        </form>
+    </div>
+</body>
+</html>
+

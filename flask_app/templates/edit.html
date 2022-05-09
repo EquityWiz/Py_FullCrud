@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='longform.css')}}">
+</head>
+<body>
+    <div style="color:white; flex: 1;height: 150; width: 150; background-color: rgb(19, 57, 114);position: absolute;right: 15%;top: 3%; padding: 10px; border: 1px gray solid; border-radius: 5%;">
+        <h3>{{logged_user.first_name}} {{logged_user.last_name}}</h3>
+            <br>
+            <a href="/dashboard">Home</a>
+            <a href="/logout">Logout</a>
+    </div>
+    <h1 class="banner" style="left: 38%; position: absolute; top: 5%;">Update Car Listing</h1>
+    <div class="loginBox">
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red;">{{message}}</p><br>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        <form action="/edit/success" method="post">
+            <input type="hidden" name="id" value="{{car.id}}">
+            <div class="inputBox" style="display: flex;">
+                <div style="flex: 2;">
+                    <input id="uname" type="text" name="model" value="{{car.model}}">
+                    <input id="uname" type="text" name="make" value="{{car.make}}">
+                    <textarea name="description" id="" cols="50" rows="8" style="margin: 10px;">{{car.description}}</textarea>
+                </div>
+                <div style="flex: 1; margin: 10px; margin-top: 50px; padding: 5px;">
+                    <label for="year" style="color: white;">Year</label>
+                    <input type="number" name="year" value="{{car.year}}">
+                    <label for="price" style="color: white;">Price</label>
+                    <input type="number" name="price" value="{{car.price}}">
+                </div>
+            </div>
+            <input type="submit" name="" value="Update">
+        </form>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='longform.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='button.css')}}">
+</head>
+<body>
+    <div class="container" style="display: flex; justify-content: space-around;">
+        <div class="left" style="flex: 2;">
+            <h1 class="banner" style="left: 40%; position: absolute; top: 5%;">{{user.first_name}} {{user.last_name}}'s Purchases</h1>
+            <div style="position: absolute; background-color: #6d6c6c; width: 350px; height: 350px; top: 50%; left: 50%; border: 2px solid black; box-shadow: 3px 3px 3px black;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for car in user.cars %}
+                        <tr>
+                            <td>{{car.make}}</td>
+                            <td>{{car.model}}</td>
+                            <td>{{car.year}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div> 
+            </div>
+        </div>
+        <div class="right" style="flex: 1;height: 150; width: 150; background-color: rgb(19, 57, 114);position: absolute;right: 20%;top: 5%; padding: 10px; border: 1px gray solid; border-radius: 5%;">
+            <br>
+            <button class="button-34" role="button"><a href="/dashboard">Home</a></button>
+            <br>
+            <button class="button-34" role="button"><a href="/logout">Logout</a></button>
+        </div>
+    </div>
+</body>
+</html>
+
